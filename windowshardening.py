@@ -2,15 +2,14 @@ import subprocess
 import platform
 
 def execute_command(command):
-    """
-    Executes a shell command and returns the output.
-
-    Args:
-        command (str): The command to execute.
-
-    Returns:
-        str: The output of the command.
-    """
+#    Executes a shell command and returns the output.
+#
+#    Args:
+#        command (str): The command to execute.
+#
+#    Returns:
+#        str: The output of the command.
+    
     try:
         # Execute the command and capture the output
         output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
@@ -21,19 +20,14 @@ def execute_command(command):
         return e.output.decode("utf-8").strip()
 
 def check_windows_version():
-    """
-    Checks the version of Windows.
-
-    Returns:
-        str: The Windows version.
-    """
+#    Checks the version of Windows.
+#    Returns:
+# str: The Windows version.
+    
     # Get the Windows release version
     return platform.release()
 
 def disable_guest_account():
-    """
-    Disables the guest account (Windows 10 only).
-    """
     # Check if the Windows version is Windows 10
     if check_windows_version() == '10':
         # Disable the guest account
@@ -44,15 +38,11 @@ def disable_guest_account():
         print("Guest account cannot be disabled on this version of Windows.")
 
 def enable_firewall():
-    """Enables the Windows Firewall."""
     # Enable the Windows Firewall for all profiles
     execute_command("netsh advfirewall set allprofiles state on")
     print("Firewall enabled.")
 
 def enable_windows_defender():
-    """
-    Enables Windows Defender (Windows 10 only).
-    """
     # Check if the Windows version is Windows 10
     if check_windows_version() == '10':
         # Enable Windows Defender's real-time monitoring
@@ -63,7 +53,6 @@ def enable_windows_defender():
         print("Windows Defender is not available on this version of Windows.")
 
 def restrict_remote_desktop_access():
-    """Restricts Remote Desktop access."""
     # Modify registry to deny Remote Desktop connections
     execute_command("reg add \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\" /v fDenyTSConnections /t REG_DWORD /d 1 /f")
     print("Remote Desktop access restricted.")
