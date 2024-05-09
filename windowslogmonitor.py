@@ -21,12 +21,6 @@ def execute_command(command):
         return e.output.decode("utf-8").strip()
 
 def check_windows_version():
-    """
-    Checks the version of Windows.
-
-    Returns:
-        str: The Windows version.
-    """
     # Get the Windows release version
     return platform.release()
 
